@@ -148,8 +148,8 @@ namespace ProjetWPF
             {
                 //Actualisation des informations du vin
                 txtMillesime.Text = (lvBouteilles.SelectedItem as Bouteille).LeVin.MillesimeVin.ToString();
-                txtNomCepage.Text = (lvBouteilles.SelectedItem as Bouteille).LeVin.LeCepage.NomCepage.ToString();
-                txtCouleur.Text = (lvBouteilles.SelectedItem as Bouteille).LeVin.LaCouleur.NomCouleur.ToString();
+                txtNomCepage.Text = (lvBouteilles.SelectedItem as Bouteille).LeVin.LeCepage.NomCepage;
+                txtCouleur.Text = (lvBouteilles.SelectedItem as Bouteille).LeVin.LaCouleur.NomCouleur;
                 txtPrix.Text = (lvBouteilles.SelectedItem as Bouteille).LeVin.PrixDuVin.ToString();
             }
         }
