@@ -29,16 +29,12 @@ namespace ProjetWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            // Les couleurs du vin 
-
+            // Les couleurs du vin
             Couleur blanc = new Couleur("Blanc");
             Couleur rose = new Couleur("Rosé");
             Couleur rouge = new Couleur("Rouge");
 
-
-
             // Les cépages du vin 
-
             Cepage beaujolais = new Cepage("Beaujolais");
             Cepage chardonnay = new Cepage("Chardonnay");
             Cepage gamay = new Cepage("Gamay");
@@ -67,8 +63,6 @@ namespace ProjetWPF
             Vin vin19 = new Vin("Château Coutet", 2017, sauvignon, rouge, 22.74);
             Vin vin20 = new Vin("Château Suduiraut", 2007, sauvignon, rouge, 8.63);
 
-
-
             // Les bouteilles 
             Bouteille b1 = new Bouteille(1, 125, vin1);
             Bouteille b2 = new Bouteille(2, 56, vin2);
@@ -91,10 +85,12 @@ namespace ProjetWPF
             Bouteille b19 = new Bouteille(19, 37, vin19);
             Bouteille b20 = new Bouteille(20, 92, vin20);
 
+            //Liste de bouteilles
             List<Bouteille> boutCav1 = new List<Bouteille>();
             List<Bouteille> boutCav2 = new List<Bouteille>();
             List<Bouteille> boutCav3 = new List<Bouteille>();
 
+            //Ajout bouteilles aux listes bouteilles
             boutCav1.Add(b1);
             boutCav1.Add(b2);
             boutCav1.Add(b3);
@@ -116,32 +112,41 @@ namespace ProjetWPF
             boutCav2.Add(b19);
             boutCav3.Add(b20);
 
+            //Ajout des caves au dico
             gst = new GestionnaireDeCaves();
             gst.AjouterCave("SIO1", boutCav1);
             gst.AjouterCave("SIO2", boutCav2);
             gst.AjouterCave("SIO3", boutCav3);
 
+            //affichage des caves
             lvCaves.ItemsSource = gst.LesCaves.Keys;
-
-            // A vous de jouer
         }
 
         private void lvCaves_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //Actualisation de la liste de bouteilles
             if(lvCaves.SelectedItem != null)
             {
                 lvBouteilles.ItemsSource = gst.LesCaves[lvCaves.SelectedItem as string];
             }
 
+            //Actualisation des informations de la cave
             txtNbBouteilles.Text = gst.NbBouteilles(lvCaves.SelectedItem as string).ToString();
             txtNbBouteillesDeRouges.Text = gst.NbBouteillesDeRouges(lvCaves.SelectedItem as string).ToString();
             txtValeurDeLaCave.Text= gst.ValeurDeLaCave(lvCaves.SelectedItem as string).ToString();
+
+            //Suppression des information de la bouteille
+            txtMillesime.Text = null;
+            txtNomCepage.Text = null;
+            txtCouleur.Text = null;
+            txtPrix.Text = null;
         }
 
         private void lvBouteilles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(lvBouteilles.SelectedItem != null)
             {
+                //Actualisation des informations du vin
                 txtMillesime.Text = (lvBouteilles.SelectedItem as Bouteille).LeVin.MillesimeVin.ToString();
                 txtNomCepage.Text = (lvBouteilles.SelectedItem as Bouteille).LeVin.LeCepage.NomCepage.ToString();
                 txtCouleur.Text = (lvBouteilles.SelectedItem as Bouteille).LeVin.LaCouleur.NomCouleur.ToString();
