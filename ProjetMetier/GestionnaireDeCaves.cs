@@ -17,25 +17,40 @@ namespace ProjetMetier
 
         public void AjouterCave(string unNomDeCave,List<Bouteille> lesBouteillesDeLaCave)
         {
-            // A vous de jouer
+            LesCaves.Add(unNomDeCave, lesBouteillesDeLaCave);
         }
 
         public int NbBouteilles(string unNomDeCave)
         {
-            // A vous de jouer
-            return 0;
+            int nbBout = 0;
+            foreach(Bouteille b in LesCaves[unNomDeCave])
+            {
+                nbBout++;
+            }
+            return nbBout;
         }
 
         public int NbBouteillesDeRouges(string unNomDeCave)
         {
-            // A vous de jouer
-            return 0;
+            int nbBout = 0;
+            foreach (Bouteille b in LesCaves[unNomDeCave])
+            {
+                if (b.LeVin.LaCouleur.NomCouleur == "Rouge")
+                {
+                    nbBout++;
+                }
+            }
+            return nbBout;
         }
 
         public double ValeurDeLaCave(string unNomDeCave)
         {
-            // A vous de jouer
-            return 0;
+            double valeur=0;
+            foreach (Bouteille b in LesCaves[unNomDeCave])
+            {
+                valeur += b.LeVin.PrixDuVin * b.QuantiteBouteille;
+            }
+            return valeur;
         }
     }
 }
